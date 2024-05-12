@@ -53,7 +53,11 @@
                 @Html.DisplayFor(modelItem => item.PublicationYear)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.file)
+                    @if (!string.IsNullOrEmpty(item.file)) {
+                        <a asp-page="./ViewFile" asp-route-id="@item.file">Visualitzar arxiu</a>
+                    }
+
+                @* @Html.DisplayFor(modelItem => item.file) *@
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
