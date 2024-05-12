@@ -21,9 +21,20 @@ namespace Library.Pages.Books
 
         public IList<Book> Book { get;set; } = default!;
 
+        [BindProperty(SupportsGet = true)] // Enllaça el camp de cerca amb les cadenes de consulta
+        public string SearchString { get; set; } //Conté el text per fer la cerca
+
+
         public async Task OnGetAsync()
         {
-            Book = await _context.Book.ToListAsync();
+            var books = from m in _context.Book select m;
+
+            if (!string.IsNullOrEmpty(SearchString)) {
+                books = books.Where(s => s.Title.Contains(SearchString));
+            }
+
+
+            Book = await books.ToListAsync();
         }
     }
 }

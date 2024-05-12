@@ -10,6 +10,13 @@
 <p>
     <a asp-page="Create">Afegir Llibre</a>
 </p>
+<form>
+    <p>
+        Buscar Titol:
+        <input type="text" asp-for="SearchString" />
+        <input type="submit" asp-for="SearchString" value="Filter" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
