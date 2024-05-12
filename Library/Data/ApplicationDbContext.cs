@@ -5,7 +5,6 @@ namespace Library.Data {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
         }
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Library.Models.Book> Book { get; set; } = default!;
     }
 }
