@@ -18,7 +18,7 @@ namespace Library.Pages.Books
             //string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", id);
             //return File(System.IO.File.OpenRead(filePath), "application/pdf", id);
 
-            string physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", id);
+            string physicalPath = Path.Combine("/var/www", "Uploads", id);
             byte[] pdfBytes = System.IO.File.ReadAllBytes(physicalPath);
             MemoryStream ms = new MemoryStream(pdfBytes);
             return new FileStreamResult(ms, "application/pdf");

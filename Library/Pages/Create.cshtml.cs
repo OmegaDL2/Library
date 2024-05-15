@@ -39,11 +39,11 @@ namespace Library.Pages.Books
                 return Page();
             }
 
-            if (!(Upload == null)) {
+            if (!(Upload == null)) {               
                 // File Upload
                 string extention = Path.GetExtension(Upload.FileName);
                 string fileName = Guid.NewGuid().ToString() + extention;  // Chnage name of file to a Guid
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                string path = Path.Combine("/var/www", "Uploads");
                 using FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create);
                 Upload.CopyTo(stream);  // Execute the file copy
 
