@@ -1,10 +1,76 @@
 ﻿@page
-@model IndexModel
+@model Library.Pages.Books.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Llista";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Llista de llibres</h1>
+
+<p>
+    <a asp-page="Create">Afegir Llibre</a>
+</p>
+<form>
+    <p>
+        Buscar Titol:
+        <input type="text" asp-for="SearchString" />
+        <input type="submit" asp-for="SearchString" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].PublicationYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].file)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Book) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublicationYear)
+            </td>
+            <td>
+                    @if (!string.IsNullOrEmpty(item.file)) {
+                        <a asp-page="./ViewFile" asp-route-id="@item.file">Visualitzar arxiu</a>
+                    }
+
+                @* @Html.DisplayFor(modelItem => item.file) *@
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id">Detalls</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
